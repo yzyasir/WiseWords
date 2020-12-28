@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from django.contrib import messages
-# This should help in display the error messages, for one req res cycle
+from django.contrib import messages # This should help in display the error messages, for one req res cycle
+
+import bcrypt # To install, use "pip install bcrypt", this is needed to encypt our passcode
 
 from .models import User # Need to import our models to the views file
 
@@ -26,5 +27,19 @@ def register(request): # Things to ask: What am I expecting to return? Render a 
             messages.error(request, value) # .error is a thing that comes from the messages module that we imported
             # This (request, value) is for all the values in the errors disctionary, WHAT IS REQUEST DOING HERE
         return redirect("/")
+    else:
+
+        # Encrypt the passcode, and then create the user
+        hash1 = bcrypt.hashpw('test'.encode(), )
+        hash_variable = bcrypt.hashpw(request.POST['formPassword'].encode(), bcrypt.gensalt()).decode() # Bcrypt comes in with a method called hashpw
+        print(hash_variable)
+
+        Users.objects.create( # So, you see houw we are setting our db fields to whats coming in from the form?
+            firstName = request.POST['formFirstName'], 
+            lastName = request.POST['formLastName'],
+            email = request.POST['formEmail'],
+            password = request.POST['formPassword']
+        )
+        
 
     return redirect("/") # post reqs are redirects in python, we redirected to the home page "/""

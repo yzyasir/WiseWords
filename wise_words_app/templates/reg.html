@@ -11,7 +11,7 @@
 <body>
     <h1>Register for Wise Words</h1>
 
-    {% for message in messages %}    
+    {% for message in messages %} <!-- messages was imported int he views file -->
         <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
     {% endfor %}  <!-- message.tags will also show they key along with the value of the errors object -->
 
@@ -21,19 +21,19 @@
         {% csrf_token %} <!-- These tokens are a unique unpredictable value that is generated serverside and transmitted to the client. Basically when the later req is made, the serverside validates the rew based upon whether the token is present or not (or invalid). Prevents the attacker from to construct a fully valide HTTP req. -->
 
         <label>First Name:</label><br>  <!-- br tag is for a single line break -->
-        <input type="text" name="firstName" id=""><br>  <!-- type "input:text" or "input:password" to make a quick input tag-->
+        <input type="text" name="formFirstName" id=""><br>  <!-- type "input:text" or "input:password" to make a quick input tag-->
         
         <label>Last Name:</label><br>
-        <input type="text" name="lastName" id=""><br>  <!-- Whatever information I want the form to have, I need to give them name attributes that will go to the backend -->
+        <input type="text" name="formLastName" id=""><br>  <!-- Whatever information I want the form to have, I need to give them name attributes that will go to the backend -->
 
         <label>Email:</label><br>
-        <input type="text" name="email" id=""><br>
+        <input type="text" name="formEmail" id=""><br>
 
         <label>Password:</label><br>
-        <input type="password" name="password" id=""><br>  <!-- the benefit of putting type="password is that what we now type in the bar is hidden" -->
+        <input type="password" name="formPassword" id=""><br>  <!-- the benefit of putting type="password is that what we now type in the bar is hidden" -->
 
         <label>Confirm Password</label><br>
-        <input type="password" name="confirmPW" id=""><br> <!-- For the info to be printed in the views page, we needed to add name attributes -->
+        <input type="password" name="FormConfirmPW" id=""><br> <!-- For the info to be printed in the views page, we needed to add name attributes -->
 
         <input type="submit" value="Register"> 
 

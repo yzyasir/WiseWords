@@ -1,5 +1,7 @@
 from django.db import models
 
+import re #allows us to import regex
+
 # Create your models AND validations here. 
 
 # 2nd Step Models: Here we are doing validations for register
@@ -8,21 +10,37 @@ class UserManager(models.Manager): # Did TableNameManager
     def regValidator(self, postDataFromTheForm): # Can name that anything I want so I made it long
         errors = {} # Here we will have our errors in a "dictionary", each key name must be unique
 
+        # All regex means is regular expression/patterns (of emails in our case)
+        # The blue r indicates a raw string, shows that any of the symbols are allowed, hten the at symbol, then what is shown after the at is allowed, then it needs a .
+        EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+        # .compile turns a regular expression string into an object, that we can compare strings with
+
         # Here we we'll have validation if checks
-        if len(postDataFromTheForm['firstName']) == 0:
+        if len(postDataFromTheForm['formFirstName']) == 0:
             errors['firstNameReq'] = "First Name Is Required" 
 
-        if len(postDataFromTheForm['lastName']) == 0:
+        if len(postDataFromTheForm['formLastName']) == 0:
             errors['lastNameReq'] = "Last Name Is Required"
 
-        if len(postDataFromTheForm['email']) == 0:
+        if len(postDataFromTheForm['formEmail']) == 0:
             errors['emailReq'] = "Email Is Required"
 
-        if len(postDataFromTheForm['password']) < 4:
+        if len(postDataFromTheForm['formPassword']) < 4:
             errors['passwordReq'] = "Password Must Be At Least 4 Characters Long"
 
-        if postDataFromTheForm['password'] != postDataFromTheForm['confirmPW']: # != means not equal
-            errors['confirmPWReq'] = "The passwords must match, please try again"
+        if postDataFromTheForm['formPassword'] != postDataFromTheForm['formConfirmPW']: # != means not equal
+            errors['confirmPWReq'] = "The Passwords Must Match, Please Try Again"
+        
+        # The below code means if they do not match the pattern, what the blue not is for.
+        elif not EMAIL_REGEX.match(postDataFromTheForm['formEmail']):  # test whether a field matches the pattern            
+            errors['errors_email'] = "Email Must Be In Proper Format!"
+        
+        else:
+            email_taken = Login.objects.filter(email = postDataFromTheForm['formEmail'])
+            if len(email_taken)>0:
+                errors['errors_email_taken'] = "This Email Is Taken. Please Try Again."
+        # Whole else statement PREVENTS DUPLICATE EMAILS
+        
         return errors
 
  
