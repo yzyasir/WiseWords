@@ -10,7 +10,8 @@
 </head>
 <body>
     <h1>Register for Wise Words</h1>
-
+    <h2>Login Here</h2>
+    
     {% for message in messages %} <!-- messages was imported int he views file -->
         <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
     {% endfor %}  <!-- message.tags will also show they key along with the value of the errors object -->
