@@ -14,7 +14,7 @@
     
     {% for message in messages %} <!-- messages was imported int he views file -->
         <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
-    {% endfor %}  <!-- message.tags will also show they key along with the value of the errors object -->
+    {% endfor %}  <!-- message.tags will also show they key along with the value of the errors object, ****** GO OVER .TAGS AGAIN ******--> 
 
     <form action="/register" method="post">  <!-- a shortcut to make a form is "form:post", nothing else needed -->
     <!-- Make sure to specify this is a post req -->
@@ -34,7 +34,7 @@
         <input type="password" name="formPassword" id=""><br>  <!-- the benefit of putting type="password is that what we now type in the bar is hidden" -->
 
         <label>Confirm Password</label><br>
-        <input type="password" name="FormConfirmPW" id=""><br> <!-- For the info to be printed in the views page, we needed to add name attributes -->
+        <input type="password" name="formConfirmPW" id=""><br> <!-- For the info to be printed in the views page, we needed to add name attributes -->
 
         <input type="submit" value="Register"> 
 
