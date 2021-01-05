@@ -35,7 +35,7 @@ class UserManager(models.Manager): # Did TableNameManager
         elif not EMAIL_REGEX.match(postDataFromTheForm['formEmail']):  # test whether a field matches the pattern            
             errors['errors_email'] = "Email Must Be In Proper Format!"
         else:
-            email_taken = Login.objects.filter(email = postDataFromTheForm['formEmail']) # What .filter does is that it filters the database for the email that comes through the form
+            email_taken = User.objects.filter(email = postDataFromTheForm['formEmail']) # What .filter does is that it filters the database for the email that comes through the form
             # If the length of this email is greater than 0, then the email is taken, note formEmail is put into a list/list
             if len(email_taken)>0: 
                 errors['errors_email_taken'] = "This Email Is Taken. Please Try Again." # This errors message is going into the errors dictionary

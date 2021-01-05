@@ -30,16 +30,35 @@ def register(request): # Things to ask: What am I expecting to return? Render a 
     else:
 
         # Encrypt the passcode, and then create the user
-        hash1 = bcrypt.hashpw('test'.encode(), )
-        hash_variable = bcrypt.hashpw(request.POST['formPassword'].encode(), bcrypt.gensalt()).decode() # Bcrypt comes in with a method called hashpw
-        print(hash_variable)
+        # hash1 = bcrypt.hashpw('test'.encode(), ) THIS IS AN EXAMPLE
+        hashedPasswordVariable = bcrypt.hashpw(request.POST['formPassword'].encode(), bcrypt.gensalt()).decode() # Bcrypt comes in with a method called hashpw
+        print(hashedPasswordVariable)
 
-        Users.objects.create( # So, you see houw we are setting our db fields to whats coming in from the form?
+        # See how we dont even have to define newUser, cool no?
+        newUser = User.objects.create( # So, you see how we are setting our db fields to whats coming in from the form?
             firstName = request.POST['formFirstName'], 
             lastName = request.POST['formLastName'],
             email = request.POST['formEmail'],
-            password = request.POST['formPassword']
-        )
+            password = hashedPasswordVariable
+            )
+
+        # So to use seesion we want to use the most unique piece of info we can, which is their id
+        request.session['loggedInIdForSessions'] = newUser.id  
+        # This of request.session as a dictionary of key value pairs that has cookies as values
+        # It doesnt let you store the whole user object in session, just primitive data types
+        # loggedInIdForSessions is just the key for the object
+
+        # Now that we have made a used cookie for sessions, and created the user, we want to redirect
+        return redirect("/homepage")
+        # Here we made an object, hence the create
         
 
     return redirect("/") # post reqs are redirects in python, we redirected to the home page "/""
+
+def homepage(request):
+    context = { # Here we are passing in information to the template to display it
+        # How do we use information in here, we use the session data since it is stored everywhere
+        'loggedInUser' : User.objects.get(id = request.session['loggedInIdForSessions']) # In a dictionary key value pairs are seperated by a colon
+    }
+    return render(request, "homepage.html", context) #here we are rendering the hompage 
+    # Notice how we are passing in context in the return, AFTER ALL A FUNCTION IS ONLY EQUAL TO WHAT IT RETURNS
