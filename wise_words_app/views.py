@@ -55,6 +55,8 @@ def register(request): # Things to ask: What am I expecting to return? Render a 
 
     return redirect("/") # post reqs are redirects in python, we redirected to the home page "/""
 
+
+
 def homepage(request):
     context = { # Here we are passing in information to the template to display it
         # How do we use information in here, we use the session data since it is stored everywhere
@@ -63,5 +65,13 @@ def homepage(request):
     return render(request, "homepage.html", context) #here we are rendering the hompage 
     # Notice how we are passing in context in the return, AFTER ALL A FUNCTION IS ONLY EQUAL TO WHAT IT RETURNS
 
+
+
 def loginPage(request):
     return render(request, "login.html") 
+
+def login(request): # redirect becasuse thats what we do in post requests
+    # This function will have access being sent from the form so we can print the post data
+    print(request.POST) # Once we get this form data, we want to send it through a validator in out models file
+
+    return redirect("/homePage")

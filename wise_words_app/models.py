@@ -6,7 +6,13 @@ import re #allows us to import regex
 
 # 2nd Step Models: Here we are doing validations for register
 # We will pass request.POST (here it will be refered to as postDataFromTheForm) to this function
-class UserManager(models.Manager): # Did TableNameManager
+class UserManager(models.Manager): # Did TableNameManager,    this manager is used to validate anything regarding users, so we can have multiple methods inside of one class
+    
+    def loginValidator(self, postDataFromTheLoginForm):
+        errors = {} 
+
+        return errors 
+    
     def regValidator(self, postDataFromTheForm): # Can name that anything I want so I made it long
         errors = {} # Here we will have our errors in a "dictionary", each key name must be unique
 

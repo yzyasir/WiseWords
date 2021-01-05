@@ -11,4 +11,5 @@ urlpatterns = [
     path('homepage', views.homepage), # .something is the method we have created in views
 
     path('loginPage', views.loginPage) # rendering login page here
+    path('login', views.login) #method to login
 ]
