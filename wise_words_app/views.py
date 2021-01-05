@@ -8,7 +8,7 @@ from .models import User # Need to import our models to the views file
 # HERE WE RENDER OUR PAGES!!!
 
 # STEP 8: Create your views here. HERE WE MAKE OUR METHODS.
-def index(request):
+def registerPage(request):
     return render(request, "reg.html") # STEP 9: Need to make an html "templates" file NEXT TO migrations
 
 def register(request): # Things to ask: What am I expecting to return? Render a template? Redirect? Is this method a post req?
@@ -62,3 +62,6 @@ def homepage(request):
     }
     return render(request, "homepage.html", context) #here we are rendering the hompage 
     # Notice how we are passing in context in the return, AFTER ALL A FUNCTION IS ONLY EQUAL TO WHAT IT RETURNS
+
+def loginPage(request):
+    return render(request, "login.html") 

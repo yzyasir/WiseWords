@@ -16,6 +16,8 @@
         <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
     {% endfor %}  <!-- message.tags will also show they key along with the value of the errors object, ****** GO OVER .TAGS AGAIN ******--> 
 
+
+    <!-- the action refers to the method we made in views -->
     <form action="/register" method="post">  <!-- a shortcut to make a form is "form:post", nothing else needed -->
     <!-- Make sure to specify this is a post req -->
  
