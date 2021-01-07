@@ -1,6 +1,7 @@
 from django.db import models
 
 import re #allows us to import regex
+import bcrypt 
 
 # Create your models AND validations here. 
 
@@ -15,23 +16,29 @@ class UserManager(models.Manager): # Did TableNameManager
         
         # print(postDataFromTheLoginForm), remember how we are getting our data? as a dictionary
 
-        userWithAnEmail = User.objects.filter(email = postDataFromTheLoginForm["formEmail"]) # This is how we filter our db from the email coming in through the form
+        usersWithAnEmail = User.objects.filter(email = postDataFromTheLoginForm["formEmail"]) # This is how we filter our db from the email coming in through the form 
+        # We use line 19 later in line 31 and after
 
         # 1. Fill out email portion of form if check goes here
         if len(postDataFromTheLoginForm['formEmail']) == 0: # Use the "name" from the html form
             errors['loginEmailReq'] = "You must enter an email to login" # Why we use square brackets?
 
         # 2. Make sure the email is actually in the db
-        elif len(userWithAnEmail) == 0:
+        elif len(usersWithAnEmail) == 0:
             errors['emailNotFound'] = "Email is not found. Please register first"
         
         # 3. If email is found, then check if the password matches
         else:
-            userToCheckPassword = userWithAnEmail[0] 
-            print(usersWithAnEmail) # This represents a list of user objects that match the email I try to log in with
-            print(usersWithAnEmail[0]) # This will not give me a list anymore, it will just give me one
-            print(usersWithAnEmail[0].password) # And then this would give me the password of the email
+            userToCheckPassword = usersWithAnEmail[0] 
+            # print(usersWithAnEmail) # This represents a list of user objects that match the email I try to log in with
+            # print(usersWithAnEmail[0]) # This will not give me a list anymore, it will just give me one
+            # print(usersWithAnEmail[0].password) # And then this would give me the password of the email
 
+            # checkpw() is a method that comes with bcypt
+            if bcrypt.checkpw(postDataFromTheLoginForm['formPassword'].encode(), usersWithAnEmail[0].password.encode()): # Here we are using the checkpw method that comes with bcrypt and comparing it to the hashed pw we pull form the db
+                print("Congratulations the password matches")
+            else:
+                errors['passwordDoesNotMatch'] = "Password does not match any email, please try again"
         return errors # We are returning our errors from this validator
     
     def regValidator(self, postDataFromTheForm): # Can name that anything I want so I made it long

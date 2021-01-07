@@ -73,9 +73,7 @@ def homepage(request):
 
 # ______________________________________________________________________________________________________________________
 
-def loginPage(request):
-    
-
+def loginPage(request): # This is to render
     return render(request, "login.html") 
 
 def login(request): 
@@ -83,16 +81,20 @@ def login(request):
     # This will have access being sent from the form so we can print the post data
     print(request.POST) # Once we get this form data, we want to send it through a validator in out models file
 
-    # Why do we put our request.POST inside of this FUNCTION CALL?? Because we want to validate our post data. 
+    # Why do we put our request.POST inside of this FUNCTION CALL?? Because we want to validate our post data. Basically sending our data to be verified. 
     # Remember what Rahb always said, a function call is only equal to what it returns. So what are we returning? Our errors object.
     validationErrorMessagesObject = User.objects.loginValidator(request.POST) # In this FUNCTION CALL we do User because it is our model, .objects is the structure of data, loginValidator is the validator method in our models file.
     
     if len(validationErrorMessagesObject) > 0: # What does .items() do?
         for key, value in validationErrorMessagesObject.items(): # Writing it this way allows me to get the key and value
             messages.error(request, value) # .error is a thing that comes from the messages module that we imported
-            # This (request, value) is for all the values in the errors disctionary, WHAT IS REQUEST DOING HERE
-            
+            # This (request, value) is for all the values in the errors dictionary, WHAT IS REQUEST DOING HERE
+
             # print(validationErrorMessagesObject), did this to check in the command line if it worked
         return redirect("/loginPage") # If it doesnt work, then it goes back to the login screen
-
-    return redirect("/homePage") # redirect becasuse thats what we do in post requests
+    
+    else:
+        userWithAnEmail = User.objects.filter(email = request.POST["formEmail"]) # Else, if we do find the email in request.POST, then make a session using the users id, and then redirect to the home screen
+        request.session['loggedInIdForSessions'] = userWithAnEmail[0].id # We use .id (the index of 0) because we want to use the first email we find, since we are not allowing duplicates
+        # Note, for the session we are all using the same cookie name "loggedInIdForSessions" for all moments where we use sessions
+        return redirect("/homepage") # redirect becasuse thats what we do in post requests
