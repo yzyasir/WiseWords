@@ -20,13 +20,11 @@ def registerPage(request):
 def register(request): # Things to ask: What am I expecting to return? Render a template? Redirect? Is this method a post req?
     print(request.POST) # This represents information from the POST
 
-    print("*******************")
     
     validationErrorsObject = User.objects.regValidator(request.POST) # This is a function call, so you get something back in the return (errors in our case) 
     # So you need to store what you get back (which I did in validationErrorsObject)
     print(validationErrorsObject)
 
-    print("*******************")
 
     if len(validationErrorsObject) > 0: # What does .items() do?
         for key, value in validationErrorsObject.items(): # Writing it this way allows me to get the key and value
@@ -64,6 +62,11 @@ def register(request): # Things to ask: What am I expecting to return? Render a 
 # _____________________________________________________________________________________________________________________
 
 def homepage(request):
+    if 'loggedInIdForSessions' not in request.session: # This is basically english LOL! But this checks if you have a cookie created and are in session, if you arent then you'll recieve this error message.
+        messages.error(request, "Invalid login Attempt. Please login first.") # The message I have here is basically the value of the message, it can be anything I want
+        print("2 ************************************")
+        return redirect('/loginPage') # Need to redirect back to the login page, it was giving me an error " 'str' object has no attribute 'get "" when I did not have the redirect
+
     context = { # Here we are passing in information to the template to display it
         # How do we use information in here, we use the session data since it is stored everywhere
         'loggedInUser' : User.objects.get(id = request.session['loggedInIdForSessions']) # In a dictionary key value pairs are seperated by a colon
@@ -98,3 +101,13 @@ def login(request):
         request.session['loggedInIdForSessions'] = userWithAnEmail[0].id # We use .id (the index of 0) because we want to use the first email we find, since we are not allowing duplicates
         # Note, for the session we are all using the same cookie name "loggedInIdForSessions" for all moments where we use sessions
         return redirect("/homepage") # redirect becasuse thats what we do in post requests
+
+# __________________________________________________________________________________________________________________________
+
+def logout(request):
+
+    # Not only do we want to be redirected when we logout, we want to clear the cookie, otherwise the user will stay logged in
+    request.session.clear() # Use this to clear the session cookie
+
+    # Note: We are not using any validations right? So we dont need to do anything in the models file
+    return redirect("/loginPage")

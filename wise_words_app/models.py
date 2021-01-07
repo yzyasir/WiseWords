@@ -25,7 +25,7 @@ class UserManager(models.Manager): # Did TableNameManager
 
         # 2. Make sure the email is actually in the db
         elif len(usersWithAnEmail) == 0:
-            errors['emailNotFound'] = "Email is not found. Please register first"
+            errors['emailNotFound'] = "Email is not found. Please register first."
         
         # 3. If email is found, then check if the password matches
         else:
