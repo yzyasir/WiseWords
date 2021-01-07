@@ -5,10 +5,16 @@ import bcrypt # To install, use "pip install bcrypt", this is needed to encypt o
 
 from .models import User # Need to import our models to the views file
 
-# HERE WE RENDER OUR PAGES!!!
+# HERE WE RENDER OUR PAGES AND INCLUDE OTHER METHODS !!!
 
 # STEP 8: Create your views here. HERE WE MAKE OUR METHODS.
 def registerPage(request):
+
+    # Syntax of a function:
+    # def function_name(parameters)
+    # whatever you want inside
+    # return
+
     return render(request, "reg.html") # STEP 9: Need to make an html "templates" file NEXT TO migrations
 
 def register(request): # Things to ask: What am I expecting to return? Render a template? Redirect? Is this method a post req?
@@ -55,7 +61,7 @@ def register(request): # Things to ask: What am I expecting to return? Render a 
 
     return redirect("/") # post reqs are redirects in python, we redirected to the home page "/""
 
-
+# _____________________________________________________________________________________________________________________
 
 def homepage(request):
     context = { # Here we are passing in information to the template to display it
@@ -65,13 +71,28 @@ def homepage(request):
     return render(request, "homepage.html", context) #here we are rendering the hompage 
     # Notice how we are passing in context in the return, AFTER ALL A FUNCTION IS ONLY EQUAL TO WHAT IT RETURNS
 
-
+# ______________________________________________________________________________________________________________________
 
 def loginPage(request):
+    
+
     return render(request, "login.html") 
 
-def login(request): # redirect becasuse thats what we do in post requests
-    # This function will have access being sent from the form so we can print the post data
+def login(request): 
+
+    # This will have access being sent from the form so we can print the post data
     print(request.POST) # Once we get this form data, we want to send it through a validator in out models file
 
-    return redirect("/homePage")
+    # Why do we put our request.POST inside of this FUNCTION CALL?? Because we want to validate our post data. 
+    # Remember what Rahb always said, a function call is only equal to what it returns. So what are we returning? Our errors object.
+    validationErrorMessagesObject = User.objects.loginValidator(request.POST) # In this FUNCTION CALL we do User because it is our model, .objects is the structure of data, loginValidator is the validator method in our models file.
+    
+    if len(validationErrorMessagesObject) > 0: # What does .items() do?
+        for key, value in validationErrorMessagesObject.items(): # Writing it this way allows me to get the key and value
+            messages.error(request, value) # .error is a thing that comes from the messages module that we imported
+            # This (request, value) is for all the values in the errors disctionary, WHAT IS REQUEST DOING HERE
+            
+            # print(validationErrorMessagesObject), did this to check in the command line if it worked
+        return redirect("/loginPage") # If it doesnt work, then it goes back to the login screen
+
+    return redirect("/homePage") # redirect becasuse thats what we do in post requests

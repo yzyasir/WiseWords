@@ -10,6 +10,6 @@ urlpatterns = [
     path('register', views.register), # Orange is basically the route we specified, and in views we need to make a method called register 
     path('homepage', views.homepage), # .something is the method we have created in views
 
-    path('loginPage', views.loginPage) # rendering login page here
+    path('loginPage', views.loginPage), # rendering login page here
     path('login', views.login) #method to login
 ]

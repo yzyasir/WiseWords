@@ -6,12 +6,24 @@ import re #allows us to import regex
 
 # 2nd Step Models: Here we are doing validations for register
 # We will pass request.POST (here it will be refered to as postDataFromTheForm) to this function
-class UserManager(models.Manager): # Did TableNameManager,    this manager is used to validate anything regarding users, so we can have multiple methods inside of one class
+class UserManager(models.Manager): # Did TableNameManager
     
-    def loginValidator(self, postDataFromTheLoginForm):
-        errors = {} 
+    # This manager is used to validate anything regarding users, so we can have multiple methods inside of one class
+    
+    def loginValidator(self, postDataFromTheLoginForm): #postDataFromTheLoginForm is just the data we are getting from there
+        errors = {} # like our regValidator method we have a dictionary to store our validations, put validation if statements there
+        
+        # print(postDataFromTheLoginForm), remember how we are getting our data? as a dictionary
 
-        return errors 
+        # 1. Fill out email portion of form if check goes here
+        if len(postDataFromTheLoginForm['formEmail']) == 0: # Use the "name" from the html form
+            errors['loginEmailReq'] = "You must enter an email to login" # Why we use square brackets?
+
+        # 2. Make sure the email is actually in the db
+
+        # 3. If email is found, then check if the password matches
+
+        return errors # We are returning our errors from this validator
     
     def regValidator(self, postDataFromTheForm): # Can name that anything I want so I made it long
         errors = {} # Here we will have our errors in a "dictionary", each key name must be unique
