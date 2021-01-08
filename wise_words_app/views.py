@@ -64,7 +64,9 @@ def register(request): # Things to ask: What am I expecting to return? Render a 
 def homepage(request):
     if 'loggedInIdForSessions' not in request.session: # This is basically english LOL! But this checks if you have a cookie created and are in session, if you arent then you'll recieve this error message.
         messages.error(request, "Invalid login Attempt. Please login first.") # The message I have here is basically the value of the message, it can be anything I want
-        print("2 ************************************")
+    
+        # Note: We didnt use any validations from models, just added one right here, can only do it for one?
+
         return redirect('/loginPage') # Need to redirect back to the login page, it was giving me an error " 'str' object has no attribute 'get "" when I did not have the redirect
 
     context = { # Here we are passing in information to the template to display it
