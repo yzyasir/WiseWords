@@ -113,3 +113,8 @@ def logout(request):
 
     # Note: We are not using any validations right? So we dont need to do anything in the models file
     return redirect("/loginPage")
+
+# __________________________________________________________________________________________________________________________
+
+def addPost(request):
+    return render(request, "addPost.html") # We are not passing anything like sessions here (if you look at the homepage and register function above)

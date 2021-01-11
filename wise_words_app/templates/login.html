@@ -20,13 +20,13 @@
             {% csrf_token %} <!-- These tokens are a unique unpredictable value that is generated serverside and transmitted to the client. Basically when the later req is made, the serverside validates the rew based upon whether the token is present or not (or invalid). Prevents the attacker from to construct a fully valide HTTP req. -->
 
             <label>Email:</label><br>
-            <input type="text" name="formEmail" id=""><br> <!--  -->
+            <input type="text" name="formEmail" id=""><br> 
     
             <label>Password:</label><br>
             <input type="password" name="formPassword" id=""><br>  <!-- the benefit of putting type="password is that what we now type in the bar is hidden" -->
     
             <input type="submit" value="Login"> 
     
-        </form>
+    </form>
 </body>
 </html>

@@ -114,7 +114,7 @@ class Post(models.Model): # This will be a one to many relationship between User
     # You need on_delete for one to many, research the purpose of it when given the time *******
     uploader = models.ForeignKey(User, related_name="posts_uploaded", on_delete = models.CASCADE ) # Here I am, making the one to many relationship to User class, related name is how I want the user to access the post
     likes = models.ManyToManyField(User, related_name="posts_liked") # If there is a many to many relationship here then put it in the second class after the one its connected to
-    # Note (IMPORTANT): After adding a new models class, you must do migrations "python manage.py makemigrations" then "python manage.py migrate
+    # Note (IMPORTANT): After adding a new models class, you must do migrations "python manage.py makemigrations" then "python manage.py migrate"
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

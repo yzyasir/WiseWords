@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Some Wise Words</title>
+</head>
+<body>
+    <h1>Share some Wise Words</h1>
+    <form action="/" method="post">  <!-- a shortcut to make a form is "form:post", nothing else needed -->
+        <!-- Make sure to specify this is a post req -->
+     
+            {% csrf_token %} <!-- These tokens are a unique unpredictable value that is generated serverside and transmitted to the client. Basically when the later req is made, the serverside validates the rew based upon whether the token is present or not (or invalid). Prevents the attacker from to construct a fully valide HTTP req. -->
+
+            <label>Share Wise Words:</label><br>
+            <input type="text" name="formEmail" id=""><br>  <!-- Changed type="text" to text area for more writing space -->
+    
+            <input type="submit" value="Submit"> 
+    
+    </form>
+</body>
+</html>
