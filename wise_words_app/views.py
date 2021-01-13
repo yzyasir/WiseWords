@@ -4,6 +4,7 @@ from django.contrib import messages # This should help in display the error mess
 import bcrypt # To install, use "pip install bcrypt", this is needed to encypt our passcode
 
 from .models import User # Need to import our models to the views file
+from .models import Post
 
 # HERE WE RENDER OUR PAGES AND INCLUDE OTHER METHODS !!!
 
@@ -47,7 +48,7 @@ def register(request): # Things to ask: What am I expecting to return? Render a 
             )
 
         # So to use seesion we want to use the most unique piece of info we can, which is their id
-        request.session['loggedInIdForSessions'] = newUser.id  
+        request.session['loggedInIdForSessions'] = newUser.id  # here we have created sesions
         # This of request.session as a dictionary of key value pairs that has cookies as values
         # It doesnt let you store the whole user object in session, just primitive data types
         # loggedInIdForSessions is just the key for the object
@@ -118,3 +119,14 @@ def logout(request):
 
 def addPost(request):
     return render(request, "addPost.html") # We are not passing anything like sessions here (if you look at the homepage and register function above)
+
+def createPost(request): # the name of the route is the same as the method name 
+
+    newPost = Post.objects.create(
+        wiseWords = request.POST['formPost'], 
+        uploader = User.objects.get(id = request.session['loggedInIdForSessions'])) 
+            # See how we are setting the data from the form using request.POST and setting it equal to the database term
+            # Pulled from line 74 and set it to 128, basically getting the id from sessions and then setting it to id
+            # What is did in line 127 is that I got the data from sessions, set it to id, and then set that to uploader
+            
+    return redirect("/homepage")

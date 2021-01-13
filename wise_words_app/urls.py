@@ -15,5 +15,6 @@ urlpatterns = [
 
     path('logout', views.logout), # method to logout 
 
-    path('addPost', views.addPost) # link to the add post page
+    path('addPost', views.addPost), # link to the add post page
+    path('createPost', views.createPost) # route to create a post 
 ]
