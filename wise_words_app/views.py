@@ -70,9 +70,14 @@ def homepage(request):
 
         return redirect('/loginPage') # Need to redirect back to the login page, it was giving me an error " 'str' object has no attribute 'get "" when I did not have the redirect
 
-    context = { # Here we are passing in information to the template to display it
+    context = { # Here we are passing in sessions information to the template to display which use has logged in
         # How do we use information in here, we use the session data since it is stored everywhere
-        'loggedInUser' : User.objects.get(id = request.session['loggedInIdForSessions']) # In a dictionary key value pairs are seperated by a colon
+        'loggedInUser' : User.objects.get(id = request.session['loggedInIdForSessions']), # In a dictionary key value pairs are seperated by a colon
+    # __________________________________________________________________________________________________________________
+        # This is to display all of the data for posts using ORM CRUD commands
+        'allPosts' : Post.objects.all() # After typing this out here we go to out html and {{ }} what we named all the posts here...which is allPosts
+        # So, before you get fancy using for loops, just try to see what 'allPosts' looks like (hint: it looks like a list)
+    # __________________________________________________________________________________________________________________
     }
     return render(request, "homepage.html", context) #here we are rendering the hompage 
     # Notice how we are passing in context in the return, AFTER ALL A FUNCTION IS ONLY EQUAL TO WHAT IT RETURNS
@@ -128,5 +133,5 @@ def createPost(request): # the name of the route is the same as the method name
             # See how we are setting the data from the form using request.POST and setting it equal to the database term
             # Pulled from line 74 and set it to 128, basically getting the id from sessions and then setting it to id
             # What is did in line 127 is that I got the data from sessions, set it to id, and then set that to uploader
-            
+
     return redirect("/homepage")

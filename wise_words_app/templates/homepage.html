@@ -9,5 +9,23 @@
     <h1>Welcome {{loggedInUser.firstName}}</h1>
     <a href="/logout">Logout</a>
     <a href="/addPost">Share Some Wise Words</a>
+    <!-- <p>{{allPosts}}</p>  Just checking if it works  --> 
+
+    <table>
+        <tr>
+          <th>Post Content</th>>
+          <th>Posted by</th>>
+          <th>Date Posted</th>>
+          <th>Action</th>>
+        </tr> 
+        {% for postObject in allPosts %} <!-- postObject is just a var name I made up, and allPosts was made in the views file -->
+        <tr>
+            <td>{{postObject.wiseWords}}</td> <!-- wiseWords, .uploader, .firstName, .created_at: These are the terms from our model -->
+            <td>{{postObject.uploader.firstName.capitalize}}</td> 
+            <td>{{postObject.created_at}}</td>
+            <td><a href="">Like Rant</a></td>
+          </tr>
+        {% endfor%}
+      </table>
 </body>
 </html>
