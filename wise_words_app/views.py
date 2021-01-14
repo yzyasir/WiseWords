@@ -75,8 +75,13 @@ def homepage(request):
         'loggedInUser' : User.objects.get(id = request.session['loggedInIdForSessions']), # In a dictionary key value pairs are seperated by a colon
     # __________________________________________________________________________________________________________________
         # This is to display all of the data for posts using ORM CRUD commands
-        'allPosts' : Post.objects.all() # After typing this out here we go to out html and {{ }} what we named all the posts here...which is allPosts
+        'allPosts' : Post.objects.all(), # After typing this out here we go to out html and {{ }} what we named all the posts here...which is allPosts
         # So, before you get fancy using for loops, just try to see what 'allPosts' looks like (hint: it looks like a list)
+        
+        # This is to display the liked posts
+        'likedPosts' : Post.objects.filter(likes=User.objects.get(id = request.session['loggedInIdForSessions'])), # HERE I AM A BIT CONFUSED
+        # This is to not display the ones we've liked on the table
+        'notLikedPosts' : Post.objects.exclude(likes=User.objects.get(id = request.session['loggedInIdForSessions'])) # HERE I AM A BIT CONFUSED
     # __________________________________________________________________________________________________________________
     }
     return render(request, "homepage.html", context) #here we are rendering the hompage 
