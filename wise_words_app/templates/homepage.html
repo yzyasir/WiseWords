@@ -38,7 +38,7 @@
           <th>Date Posted</th>>
           <th>Action</th>>
         </tr> 
-        {% for postObject in notLikedPosts %} <!-- postObject is just a var name I made up, and notLikedPosts was made in the views file in "context" -->
+        {% for postObject in notLikedPosts %} <!-- postObject is just a var name I made up, and notLikedPosts was made in the views file in "context", we used the exclude ORM command -->
         <tr>
             <td>{{postObject.wiseWords}}</td> <!-- wiseWords, .uploader, .firstName, .created_at: These are the terms from our model -->
             <td>{{postObject.uploader.firstName.capitalize}}</td> 

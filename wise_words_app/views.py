@@ -6,6 +6,8 @@ import bcrypt # To install, use "pip install bcrypt", this is needed to encypt o
 from .models import User # Need to import our models to the views file
 from .models import Post
 
+from django.db.models import Q # We imported this to use the OR operation
+
 # HERE WE RENDER OUR PAGES AND INCLUDE OTHER METHODS !!!
 
 # STEP 8: Create your views here. HERE WE MAKE OUR METHODS.
@@ -78,10 +80,12 @@ def homepage(request):
         'allPosts' : Post.objects.all(), # After typing this out here we go to out html and {{ }} what we named all the posts here...which is allPosts
         # So, before you get fancy using for loops, just try to see what 'allPosts' looks like (hint: it looks like a list)
         
-        # This is to display the liked posts
-        'likedPosts' : Post.objects.filter(likes=User.objects.get(id = request.session['loggedInIdForSessions'])), # HERE I AM A BIT CONFUSED
+        # This is to display the liked posts, We use the OR ORM command to prevent the posts created by the user to not be in the unliked section, and example of such command is below
+        # EXAMPLE OF OR ORM COMMAND: Contact.objects.filter(Q(last_name__icontains=request.POST['query']) | Q(first_name__icontains=request.POST['query']))
+        'likedPosts' : Post.objects.filter(Q(likes=User.objects.get(id = request.session['loggedInIdForSessions']) | Q(uploader=User.objects.get(id = request.session['loggedInIdForSessions'])))), # HERE I AM A BIT CONFUSED, here we need to show the posts liked by the logged in user
+
         # This is to not display the ones we've liked on the table (HERE WE USED THE EXCLUDE ORM COMMAND)
-        'notLikedPosts' : Post.objects.exclude(likes=User.objects.get(id = request.session['loggedInIdForSessions'])) # HERE I AM A BIT CONFUSED
+        'notLikedPosts' : Post.objects.exclude(Q(likes=User.objects.get(id = request.session['loggedInIdForSessions']) | Q(uploader=User.objects.get(id = request.session['loggedInIdForSessions'])))) # HERE I AM A BIT CONFUSED
     # __________________________________________________________________________________________________________________
     }
     return render(request, "homepage.html", context) #here we are rendering the hompage 
