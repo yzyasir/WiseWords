@@ -82,10 +82,10 @@ def homepage(request):
         
         # This is to display the liked posts, We use the OR ORM command to prevent the posts created by the user to not be in the unliked section, and example of such command is below
         # EXAMPLE OF OR ORM COMMAND: Contact.objects.filter(Q(last_name__icontains=request.POST['query']) | Q(first_name__icontains=request.POST['query']))
-        'likedPosts' : Post.objects.filter(Q(likes=User.objects.get(id = request.session['loggedInIdForSessions']) | Q(uploader=User.objects.get(id = request.session['loggedInIdForSessions'])))), # HERE I AM A BIT CONFUSED, here we need to show the posts liked by the logged in user
+        'likedPosts' : Post.objects.filter(Q(likes=User.objects.get(id = request.session['loggedInIdForSessions'])) | Q(uploader=User.objects.get(id = request.session['loggedInIdForSessions'])) ), # HERE I AM A BIT CONFUSED, here we need to show the posts liked by the logged in user
 
         # This is to not display the ones we've liked on the table (HERE WE USED THE EXCLUDE ORM COMMAND)
-        'notLikedPosts' : Post.objects.exclude(Q(likes=User.objects.get(id = request.session['loggedInIdForSessions']) | Q(uploader=User.objects.get(id = request.session['loggedInIdForSessions'])))) # HERE I AM A BIT CONFUSED
+        'notLikedPosts' : Post.objects.filter(Q(likes=User.objects.get(id = request.session['loggedInIdForSessions'])) | Q(uploader=User.objects.get(id = request.session['loggedInIdForSessions'])) ) # HERE I AM A BIT CONFUSED
     # __________________________________________________________________________________________________________________
     }
     return render(request, "homepage.html", context) #here we are rendering the hompage 
