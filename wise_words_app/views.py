@@ -135,3 +135,21 @@ def createPost(request): # the name of the route is the same as the method name
             # What is did in line 127 is that I got the data from sessions, set it to id, and then set that to uploader
 
     return redirect("/homepage")
+
+# __________________________________________________________________________________________________________________________
+def likePost(request, postId): # Notice: We need to enter the variable for the id of the post we are likeing into the parameters
+# print(postId) # Before doing anything, just check if id even shows in the console
+
+    # Here we will be making the many to many join
+    userThatIsLikingThePost = User.objects.get(id = request.session['loggedInIdForSessions']) # Again, this is how we use sessions and get the user who is logged in
+    rantThatIsBeingLiked = Post.objects.get(id=postId) # TRY AND UNDERSTAND THIS PART A BIT MORE 
+    # I BELIEVE WE GOT THE TWO OBJECTS THAT WE WANT TO MAKE THE JOIN FOR AS VARIABLES
+    
+    # NOW WE CAN USE EITHER ONE TO MAKE THE RELATIONSHIP
+    userThatIsLikingThePost.posts_liked.add(rantThatIsBeingLiked) # posts_liked is the related name from the models, same as post_uploader (also from the models file)
+    # Or you can do: rantThatIsBeingLiked.post_uploader.add(userThatIsLikingThePost)
+    # The only reason why we are able to do this is because in posts model their is already a many to many relationship made
+
+    # Then redirect
+    return redirect("/homepage")
+
