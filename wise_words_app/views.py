@@ -80,7 +80,7 @@ def homepage(request):
         
         # This is to display the liked posts
         'likedPosts' : Post.objects.filter(likes=User.objects.get(id = request.session['loggedInIdForSessions'])), # HERE I AM A BIT CONFUSED
-        # This is to not display the ones we've liked on the table
+        # This is to not display the ones we've liked on the table (HERE WE USED THE EXCLUDE ORM COMMAND)
         'notLikedPosts' : Post.objects.exclude(likes=User.objects.get(id = request.session['loggedInIdForSessions'])) # HERE I AM A BIT CONFUSED
     # __________________________________________________________________________________________________________________
     }
