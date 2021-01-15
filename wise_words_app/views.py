@@ -170,3 +170,13 @@ def likePost(request, postId): # Notice: We need to enter the variable for the i
     # Then redirect
     return redirect("/homepage")
 
+# __________________________________________________________________________________________________________________________
+
+def showPost(request, postId):
+    # Is there info we want to pass from the server to the page? Yes? Then create a dictionary of info you can pass forward. I do so in the form of "context". 
+    context = {
+        'oneMansWiseWords' : Post.objects.get(id=postId) # Now we can use oneMansWiseWords on the html form
+    }
+
+    return render(request, "showpost.html", context) # Need to thrust our data forth, thats why we add context
+ 

@@ -18,5 +18,7 @@ urlpatterns = [
     path('addPost', views.addPost), # link to the add post page
     path('createPost', views.createPost), # route to create a post 
 
-    path('like/<int:postId>', views.likePost) # So do you see how we included the id of the post we are liking? Also, we can name postId variable anything. Doesnt have to be postId.
+    path('like/<int:postId>', views.likePost), # So do you see how we included the id of the post we are liking? Also, we can name postId variable anything. Doesnt have to be postId.
+
+    path('wiseWords/<int:postId>', views.showPost)
 ]

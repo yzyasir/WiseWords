@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiseWords Display</title>
+</head>
+<body>
+    <h1>{{oneMansWiseWords.wiseWords}}</h1>
+    <p>Number of Likes: {{oneMansWiseWords.likes.all.count}}</p> <!-- .all basically shows all of them, and then .count basically turns that value into a number for display -->
+    {% for usersWhoLikedObject in oneMansWiseWords.likes.all %} <!-- usersWhoLikedObject is a var that we made and oneMansWiseWords is from the render method in the views file -->
+        <p>{{usersWhoLikedObject.firstName}} {{usersWhoLikedObject.lastName}}</p>
+    {% endfor %}
+</body>
+</html>
