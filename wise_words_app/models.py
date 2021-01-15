@@ -77,7 +77,19 @@ class UserManager(models.Manager): # Did TableNameManager
         
         return errors
 
- 
+class PostManager(models.Manager):
+    def postValidator(self, postDataFromTheWiseWordsForm):
+        errors = {}
+
+        if len(postDataFromTheWiseWordsForm['formPost']) == 0: # Use the "name" from the html form
+            errors['postReq'] = "Please share some wise words" # Why we use square brackets?
+
+        elif len(postDataFromTheWiseWordsForm['formPost']) < 6:
+            errors['postReq'] = "Wise words must be more than 6 characters my friend"
+
+        return errors
+
+
 # Note: Creating a db requires migration commands, but we have nothing to migrate...
 # So lets give it some instructions for db tables
 
@@ -118,3 +130,8 @@ class Post(models.Model): # This will be a one to many relationship between User
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    objects = PostManager() #must connect the validatons to our user models
+    # Objects needs to be in the right location (I typically add this portion after migrations)
+    # objects = models.Manager(), This, like id, is is naturally assumed to be here (but its hidden)
+    # models.Manager() allows us to have different features like .create, .update, .all, .delete, etc

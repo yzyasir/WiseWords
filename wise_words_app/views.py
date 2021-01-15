@@ -21,7 +21,7 @@ def registerPage(request):
     return render(request, "reg.html") # STEP 9: Need to make an html "templates" file NEXT TO migrations
 
 def register(request): # Things to ask: What am I expecting to return? Render a template? Redirect? Is this method a post req?
-    print(request.POST) # This represents information from the POST
+    # print(request.POST) # This represents information from the POST
 
     
     validationErrorsObject = User.objects.regValidator(request.POST) # This is a function call, so you get something back in the return (errors in our case) 
@@ -136,12 +136,20 @@ def addPost(request):
 
 def createPost(request): # the name of the route is the same as the method name 
 
-    newPost = Post.objects.create(
-        wiseWords = request.POST['formPost'], 
-        uploader = User.objects.get(id = request.session['loggedInIdForSessions'])) 
-            # See how we are setting the data from the form using request.POST and setting it equal to the database term
-            # Pulled from line 74 and set it to 128, basically getting the id from sessions and then setting it to id
-            # What is did in line 127 is that I got the data from sessions, set it to id, and then set that to uploader
+    validationErrorsObjectForPost = Post.objects.postValidator(request.POST)
+    if len(validationErrorsObjectForPost) > 0: # What does .items() do?
+        for key, value in validationErrorsObjectForPost.items(): # Writing it this way allows me to get the key and value
+            messages.error(request, value) # .error is a thing that comes from the messages module that we imported
+            # This (request, value) is for all the values in the errors disctionary, WHAT IS REQUEST DOING HERE
+        return redirect("/addPost")
+    else:
+
+        newPost = Post.objects.create(
+            wiseWords = request.POST['formPost'], 
+            uploader = User.objects.get(id = request.session['loggedInIdForSessions'])) 
+                # See how we are setting the data from the form using request.POST and setting it equal to the database term
+                # Pulled from line 74 and set it to 128, basically getting the id from sessions and then setting it to id
+                # What is did in line 127 is that I got the data from sessions, set it to id, and then set that to uploader
 
     return redirect("/homepage")
 

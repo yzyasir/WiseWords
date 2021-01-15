@@ -7,6 +7,13 @@
 </head>
 <body>
     <h1>Share some Wise Words</h1>
+
+    <!-- This is needed to display the validation errors -->
+    {% for message in messages %} <!-- messages was imported in the views file -->
+    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+    {% endfor %}  <!-- message.tags will also show they key along with the value of the errors object, ****** GO OVER .TAGS AGAIN ******--> 
+    
+    
     <form action="/createPost" method="post">  <!-- a shortcut to make a form is "form:post", nothing else needed -->
         <!-- Make sure to specify this is a post req -->
      
