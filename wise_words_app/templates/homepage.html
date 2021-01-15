@@ -43,7 +43,7 @@
             <td>{{postObject.wiseWords}}</td> <!-- wiseWords, .uploader, .firstName, .created_at: These are the terms from our model -->
             <td>{{postObject.uploader.firstName.capitalize}}</td> 
             <td>{{postObject.created_at}}</td>
-            <td><a href="/like/{{postObject.id}}">Like Rant</a></td>  <!-- Here we include id because we want to focus in on the exact post that we are liking when we like it (because of the for loop)-->
+            <td><a href="/like/{{postObject.id}}">Like Rant</a> | {% if loggedInUser == postObject.uploader %} <a href="">Delete</a> {% endif %} </td>  <!-- Here we include id because we want to focus in on the exact post that we are liking when we like it (because of the for loop)-->
             <!-- Should go to /like/3 for example -->
           </tr> 
         {% endfor%}
