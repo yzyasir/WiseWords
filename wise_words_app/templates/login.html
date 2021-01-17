@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
+<!-- Need this to style -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+<!-- Need this to style -->
 </head>
 <body>
-    <h3>Login</h3>
+    <h2 class="loginTitle">Login:</h2>
 
     <!-- This is needed to display the validation errors -->
     {% for message in messages %} <!-- messages was imported in the views file -->
@@ -19,7 +23,7 @@
      
             {% csrf_token %} <!-- These tokens are a unique unpredictable value that is generated serverside and transmitted to the client. Basically when the later req is made, the serverside validates the rew based upon whether the token is present or not (or invalid). Prevents the attacker from to construct a fully valide HTTP req. -->
 
-            <label>Email:</label><br>
+            <label >Email:</label><br>
             <input type="text" name="formEmail" id=""><br> 
     
             <label>Password:</label><br>

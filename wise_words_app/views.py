@@ -170,6 +170,16 @@ def likePost(request, postId): # Notice: We need to enter the variable for the i
     # Then redirect
     return redirect("/homepage")
 
+
+def unlikePost(request, postId):
+    userThatIsLikingThePost = User.objects.get(id = request.session['loggedInIdForSessions']) # Again, this is how we use sessions and get the user who is logged in
+
+    rantThatIsBeingLiked = Post.objects.get(id=postId) # TRY AND UNDERSTAND THIS PART A BIT MORE 
+
+    userThatIsLikingThePost.posts_liked.remove(rantThatIsBeingLiked) # What we do differently here is that we changed .add from the above method to .remove
+    
+    return redirect("/homepage")
+
 # __________________________________________________________________________________________________________________________
 
 def showPost(request, postId):
