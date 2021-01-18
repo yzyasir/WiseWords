@@ -11,6 +11,10 @@ from django.db.models import Q # We imported this to use the OR operation
 # HERE WE RENDER OUR PAGES AND INCLUDE OTHER METHODS !!!
 
 # STEP 8: Create your views here. HERE WE MAKE OUR METHODS.
+
+def welcomeToWiseWords(request):
+    return render(request, "baseHomePage.html")
+
 def registerPage(request):
 
     # Syntax of a function:
@@ -33,7 +37,7 @@ def register(request): # Things to ask: What am I expecting to return? Render a 
         for key, value in validationErrorsObject.items(): # Writing it this way allows me to get the key and value
             messages.error(request, value) # .error is a thing that comes from the messages module that we imported
             # This (request, value) is for all the values in the errors disctionary, WHAT IS REQUEST DOING HERE
-        return redirect("/")
+        return redirect("/registerPage")
     else:
 
         # Encrypt the passcode, and then create the user

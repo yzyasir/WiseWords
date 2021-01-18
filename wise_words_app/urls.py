@@ -6,6 +6,8 @@ from . import views
 
 urlpatterns = [
     # Here we want to connect our paths with the views file
+    path('welcome', views.welcomeToWiseWords),
+
     path('registerPage', views.registerPage), # STEP 7: If if in views the index method isnt made in views file, make one 
     path('register', views.register), # orange is basically the route we specified, and in views we need to make a method called register 
     path('homepage', views.homepage), # .something is the method we have created in views
