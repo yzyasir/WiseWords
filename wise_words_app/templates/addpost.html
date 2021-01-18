@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Share Some Wise Words</title>
+    <!-- Need this to style -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    <!-- Need this to style -->
 </head>
 <body>
     <h1>Share some Wise Words</h1>
@@ -12,14 +16,13 @@
     {% for message in messages %} <!-- messages was imported in the views file -->
     <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
     {% endfor %}  <!-- message.tags will also show they key along with the value of the errors object, ****** GO OVER .TAGS AGAIN ******--> 
-    
+
     
     <form action="/createPost" method="post">  <!-- a shortcut to make a form is "form:post", nothing else needed -->
         <!-- Make sure to specify this is a post req -->
      
             {% csrf_token %} <!-- These tokens are a unique unpredictable value that is generated serverside and transmitted to the client. Basically when the later req is made, the serverside validates the rew based upon whether the token is present or not (or invalid). Prevents the attacker from to construct a fully valide HTTP req. -->
 
-            <label>Share Wise Words:</label><br>
             <textarea name="formPost" id="" cols="30" rows="18"></textarea> <br>  <!-- Changed input to textarea for more writing space -->
     
             <input type="submit" value="Submit"> 

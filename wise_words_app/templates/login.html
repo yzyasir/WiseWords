@@ -10,27 +10,29 @@
 <!-- Need this to style -->
 </head>
 <body>
-    <h2 class="loginTitle">Login:</h2>
+    <div>
+        <h1>Login for Wise Words</h1>
 
-    <!-- This is needed to display the validation errors -->
-    {% for message in messages %} <!-- messages was imported in the views file -->
-        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
-    {% endfor %}  <!-- message.tags will also show they key along with the value of the errors object, ****** GO OVER .TAGS AGAIN ******--> 
+        <!-- This is needed to display the validation errors -->
+        {% for message in messages %} <!-- messages was imported in the views file -->
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+        {% endfor %}  <!-- message.tags will also show they key along with the value of the errors object, ****** GO OVER .TAGS AGAIN ******--> 
 
 
-    <form action="/login" method="post">  <!-- a shortcut to make a form is "form:post", nothing else needed -->
-        <!-- Make sure to specify this is a post req -->
-     
-            {% csrf_token %} <!-- These tokens are a unique unpredictable value that is generated serverside and transmitted to the client. Basically when the later req is made, the serverside validates the rew based upon whether the token is present or not (or invalid). Prevents the attacker from to construct a fully valide HTTP req. -->
+        <form action="/login" method="post">  <!-- a shortcut to make a form is "form:post", nothing else needed -->
+            <!-- Make sure to specify this is a post req -->
+        
+                {% csrf_token %} <!-- These tokens are a unique unpredictable value that is generated serverside and transmitted to the client. Basically when the later req is made, the serverside validates the rew based upon whether the token is present or not (or invalid). Prevents the attacker from to construct a fully valide HTTP req. -->
 
-            <label >Email:</label><br>
-            <input type="text" name="formEmail" id=""><br> 
-    
-            <label>Password:</label><br>
-            <input type="password" name="formPassword" id=""><br>  <!-- the benefit of putting type="password is that what we now type in the bar is hidden" -->
-    
-            <input type="submit" value="Login"> 
-    
-    </form>
+                <label >Email:</label><br>
+                <input type="text" name="formEmail" id=""><br> 
+        
+                <label>Password:</label><br>
+                <input type="password" name="formPassword" id=""><br>  <!-- the benefit of putting type="password is that what we now type in the bar is hidden" -->
+        
+                <input type="submit" value="Login"> 
+        
+        </form>
+    </div>
 </body>
 </html>
