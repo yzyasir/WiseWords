@@ -37,7 +37,7 @@ def register(request): # Things to ask: What am I expecting to return? Render a 
         for key, value in validationErrorsObject.items(): # Writing it this way allows me to get the key and value
             messages.error(request, value) # .error is a thing that comes from the messages module that we imported
             # This (request, value) is for all the values in the errors disctionary, WHAT IS REQUEST DOING HERE
-        return redirect("/registerPage")
+        return redirect("/welcome")
     else:
 
         # Encrypt the passcode, and then create the user
@@ -64,7 +64,7 @@ def register(request): # Things to ask: What am I expecting to return? Render a 
         # Here we made an object, hence the create
         
 
-    return redirect("/") # post reqs are redirects in python, we redirected to the home page "/""
+    return redirect("/homepage") # post reqs are redirects in python, we redirected to the home page "/""
 
 # _____________________________________________________________________________________________________________________
 
@@ -131,7 +131,7 @@ def logout(request):
     request.session.clear() # Use this to clear the session cookie
 
     # Note: We are not using any validations right? So we dont need to do anything in the models file
-    return redirect("/loginPage")
+    return redirect("/welcome")
 
 # __________________________________________________________________________________________________________________________
 

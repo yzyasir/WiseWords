@@ -36,7 +36,7 @@
     background-color: #45a049;
   }
 
-  div {
+    .loginRegContainer {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
@@ -44,6 +44,10 @@
     margin-left: 300px;
     margin-right: 300px;
     margin-top: 80px;
+  }
+
+  li {
+      margin-bottom: 10px;
   }
   
 /* _______________________________________ */
