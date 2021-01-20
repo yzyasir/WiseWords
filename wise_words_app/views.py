@@ -89,7 +89,7 @@ def homepage(request):
         'likedPosts' : Post.objects.filter(Q(likes=User.objects.get(id = request.session['loggedInIdForSessions'])) | Q(uploader=User.objects.get(id = request.session['loggedInIdForSessions'])) ), # HERE I AM A BIT CONFUSED, here we need to show the posts liked by the logged in user
 
         # This is to not display the ones we've liked on the table (HERE WE USED THE EXCLUDE ORM COMMAND)
-        'notLikedPosts' : Post.objects.filter(Q(likes=User.objects.get(id = request.session['loggedInIdForSessions'])) | Q(uploader=User.objects.get(id = request.session['loggedInIdForSessions'])) ) # HERE I AM A BIT CONFUSED
+        'notLikedPosts' : Post.objects.exclude(Q(likes=User.objects.get(id = request.session['loggedInIdForSessions'])) | Q(uploader=User.objects.get(id = request.session['loggedInIdForSessions'])) ) # HERE I AM A BIT CONFUSED
     # __________________________________________________________________________________________________________________
     }
     return render(request, "homepage.html", context) #here we are rendering the hompage 

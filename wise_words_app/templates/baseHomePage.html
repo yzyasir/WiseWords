@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Wise Words</title>
 
+    <!-- Need this for BootStrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- Need this for BootStrap -->
+
     <!-- Need this to style CSS-->
     {% load static %}
     <link rel="stylesheet" href="{% static 'style/style.css' %}">
     <!-- Need this to style CSS-->
-
-    <!-- Need this for BootStrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <!-- Need this for BootStrap -->
 
     <!-- This is for google fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -23,40 +23,43 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
     <!-- jquery navbar purposes -->
+
 </head>
 <body>
-    <nav class="navbar navbar-inverse">  <!-- inverse basically changes the color of the navbar to black or any other color -->
-        <div class=container-fluid>
-            <!-- Line 20 and below is for the logo and header on the navbar -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar"> <!-- topNavBar toggles the buttons on the navbar -->
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span> <!-- So we need 3 of these tags because we want 3 bars when the page minimizes for the navbar -->
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <a class="navbar-brand" href="">Wise Words</a>
+    <div>
+        <nav class="navbar navbar-inverse">  <!-- inverse basically changes the color of the navbar to black or any other color -->
+            <div class=container-fluid>
+                <!-- Line 20 and below is for the logo and header on the navbar -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar"> <!-- topNavBar toggles the buttons on the navbar -->
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span> <!-- So we need 3 of these tags because we want 3 bars when the page minimizes for the navbar -->
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <a class="navbar-brand" href="">Wise Words</a>
 
-            <!-- Items on out navbar are from 40 and onwards -->
-            <div class="collapse navbar-collapse" id="topNavBar"> <!-- Due to top navbar all these items will become hidden -->
-                <ul class="nav navbar-nav navbar-right"> <!-- navbar-right moves the things inside to the right of the bar, vice versa -->
-                    <li class="">
-                        <a href="#">
-                            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp; Contact Us
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="/loginPage">
-                            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp; Login
-                        </a>
-                    </li>
-                </ul>
+                <!-- Items on out navbar are from 40 and onwards -->
+                <div class="collapse navbar-collapse" id="topNavBar"> <!-- Due to top navbar all these items will become hidden -->
+                    <ul class="nav navbar-nav navbar-right"> <!-- navbar-right moves the things inside to the right of the bar, vice versa -->
+                        <li class="">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp; Contact Us
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="/loginPage">
+                                <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp; Login
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
 
     <div class="loginRegContainer">
-        <h1>Register for Wise Words</h1>
+        <h2>Register for Wise Words</h2>
         
         {% for message in messages %} <!-- messages was imported int he views file -->
             <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    

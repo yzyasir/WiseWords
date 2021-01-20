@@ -1,5 +1,5 @@
 /* This is for login and register*/
-    input[type=text], select {
+input[type=text], select {
     width: 100%;
     padding: 12px 20px;
     margin-top: 10px;
@@ -8,9 +8,9 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-  }
+}
 
-  input[type=password], select {
+input[type=password], select {
     width: 100%;
     padding: 12px 20px;
     margin-top: 10px;
@@ -19,9 +19,9 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-  }
+}
 
-  input[type=submit] {
+input[type=submit] {
     width: 100%;
     background-color: #4cacaf;
     color: white;
@@ -30,26 +30,26 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
+}
 
-  input[type=submit]:hover {
+input[type=submit]:hover {
     background-color: #45a049;
-  }
+}
 
-    .loginRegContainer {
+.loginRegContainer {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
     padding-top: 5px;
     margin-left: 300px;
     margin-right: 300px;
-    margin-top: 80px;
-  }
+    margin-top: 30px;
+}
 
-  li {
-      margin-bottom: 10px;
-  }
-  
+li {
+    margin-bottom: 10px;
+}
+
 /* _______________________________________ */
 
 /* This is for creating wise words */
@@ -61,4 +61,13 @@ textarea[type=text] {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-  }
+}
+
+/* Navbar css */
+.navbar {
+    border-radius: 0; /* This makes it square edges */
+} 
+
+.navbar-brand{
+    font-family: 'Satisfy', cursive; /* Set up in a way that if for some reason if the user can use satisfy they use cursive */
+}
