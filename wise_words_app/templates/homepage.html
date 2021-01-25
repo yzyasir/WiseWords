@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Like Posts</title>
+
+    <!-- Need this for BootStrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- Need this for BootStrap -->
 </head>
 <body>
     <h1>Welcome {{loggedInUser.firstName}}</h1>
@@ -12,16 +16,16 @@
     <!-- <p>{{allPosts}}</p>  Just checking if it works  --> 
 
     <h3>Wise Words you like</h3>
-    <table>
+    <table class="table table-hover">
         <tr>
-          <th>Post Content</th>>
-          <th>Posted by</th>>
-          <th>Date Posted</th>>
-          <th>Action</th>>
+          <th scope="col">Post Content</th>>
+          <th scope="col">Posted by</th>>
+          <th scope="col">Date Posted</th>>
+          <th scope="col">Action</th>>
         </tr> 
         {% for postObject in likedPosts %} <!-- postObject is just a var name I made up, and likedPosts was made in the views file -->
         <tr>
-            <td><a href="/wiseWords/{{postObject.id}}">{{postObject.wiseWords}}</a></td> <!-- wiseWords, .uploader, .firstName, .created_at: These are the terms from our model -->
+            <td scope="row"><a href="/wiseWords/{{postObject.id}}">{{postObject.wiseWords}}</a></td> <!-- wiseWords, .uploader, .firstName, .created_at: These are the terms from our model -->
             <td>{{postObject.uploader.firstName.capitalize}}</td> 
             <td>{{postObject.created_at}}</td>
             <td><a href="/Unlike/{{postObject.id}}">Unlike Rant</a></td>  <!-- Here we include id because we want to focus in on the exact post that we are liking when we like it (because of the for loop)-->
@@ -31,16 +35,16 @@
       </table>
     
       <h3>Wise Words you havent liked</h3>
-      <table>
+      <table class="table table-hover">
         <tr>
-          <th>Post Content</th>>
-          <th>Posted by</th>>
-          <th>Date Posted</th>>
-          <th>Action</th>>
+          <th scope="col">Post Content</th>>
+          <th scope="col">Posted by</th>>
+          <th scope="col">Date Posted</th>>
+          <th scope="col">Action</th>>
         </tr> 
         {% for postObject in notLikedPosts %} <!-- postObject is just a var name I made up, and notLikedPosts was made in the views file in "context", we used the exclude ORM command -->
         <tr>
-            <td><a href="/wiseWords/{{postObject.id}}">{{postObject.wiseWords}}</a></td> <!-- wiseWords, .uploader, .firstName, .created_at: These are the terms from our model -->
+            <td scope="row"><a href="/wiseWords/{{postObject.id}}">{{postObject.wiseWords}}</a></td> <!-- wiseWords, .uploader, .firstName, .created_at: These are the terms from our model -->
             <td>{{postObject.uploader.firstName.capitalize}}</td> 
             <td>{{postObject.created_at}}</td>
             <td><a href="/like/{{postObject.id}}">Like Rant</a> | {% if loggedInUser == postObject.uploader %} <a href="">Delete</a> {% endif %} </td>  <!-- Here we include id because we want to focus in on the exact post that we are liking when we like it (because of the for loop)-->
