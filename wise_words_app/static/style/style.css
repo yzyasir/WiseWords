@@ -71,3 +71,7 @@ textarea[type=text] {
 .navbar-brand{
     font-family: 'Satisfy', cursive; /* Set up in a way that if for some reason if the user can use satisfy they use cursive */
 }
+
+.duo {
+    display: inline-flex;
+}
