@@ -6,9 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Like Posts</title>
 
+  <!-- Need this to style CSS-->
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'style/style.css' %}">
+  <!-- Need this to style CSS -->
+
   <!-- Need this for BootStrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <!-- Need this for BootStrap -->
+
 </head>
 
 <body>
@@ -50,11 +56,15 @@
     </nav>
   </div>
 
-  <h2>Welcome {{loggedInUser.firstName}}</h2>
-  <a href="/addPost">Share Some Wise Words</a>
-  <!-- <p>{{allPosts}}</p>  Just checking if it works  -->
+    <h2>Welcome {{loggedInUser.firstName}}</h2>
+    <a href="/addPost">Share Some Wise Words</a>
+    <!-- <p>{{allPosts}}</p>  Just checking if it works  -->
+    
+  <div class="duo">
+    <h3>Wise Words you like</h3>
+    <h3>Wise Words you havent liked</h3>
+  </div>
 
-  <h3>Wise Words you like</h3>
   <div class="duo">
     <table class="table table-hover">
       <thead>
@@ -81,7 +91,6 @@
       {% endfor%}
     </table>
 
-    <h3>Wise Words you havent liked</h3>
     <table class="table table-hover">
       <thead class="thead-dark">
         <tr>

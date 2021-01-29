@@ -74,4 +74,5 @@ textarea[type=text] {
 
 .duo {
     display: inline-flex;
+    /* justify-content: space-between; */
 }
