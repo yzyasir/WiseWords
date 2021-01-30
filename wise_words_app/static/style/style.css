@@ -74,5 +74,21 @@ textarea[type=text] {
 
 .duo {
     display: inline-flex;
-    /* justify-content: space-between; */
+    justify-content: space-between;
 }
+
+/* ShowPost */
+.showPost {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 80px
+}
+
+.showPostForLikes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+/* ShowPost */

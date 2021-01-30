@@ -54,13 +54,17 @@
         </nav>
     </div>
 
-    <h1>{{oneMansWiseWords.wiseWords}}</h1>
-    <p>Number of Likes: {{oneMansWiseWords.likes.all.count}}</p>
-    <!-- .all basically shows all of them, and then .count basically turns that value into a number for display -->
-    {% for usersWhoLikedObject in oneMansWiseWords.likes.all %}
-    <!-- usersWhoLikedObject is a var that we made and oneMansWiseWords is from the render method in the views file -->
-    <p>{{usersWhoLikedObject.firstName}} {{usersWhoLikedObject.lastName}}</p>
-    {% endfor %}
+    <div class="showPost">
+        <h1>{{oneMansWiseWords.wiseWords}}</h1>
+    </div>
+    <div class="showPostForLikes">
+        <p>Number of Likes: {{oneMansWiseWords.likes.all.count}}</p>
+        <!-- .all basically shows all of them, and then .count basically turns that value into a number for display -->
+        {% for usersWhoLikedObject in oneMansWiseWords.likes.all %}
+        <!-- usersWhoLikedObject is a var that we made and oneMansWiseWords is from the render method in the views file -->
+        <p>{{usersWhoLikedObject.firstName}} {{usersWhoLikedObject.lastName}}</p>
+        {% endfor %}
+    </div>
 </body>
 
 </html>

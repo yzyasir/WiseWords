@@ -22,7 +22,7 @@ def registerPage(request):
     # whatever you want inside
     # return
 
-    return render(request, "reg.html") # STEP 9: Need to make an html "templates" file NEXT TO migrations
+    return render(request, "baseHomePage.html") # STEP 9: Need to make an html "templates" file NEXT TO migrations
 
 def register(request): # Things to ask: What am I expecting to return? Render a template? Redirect? Is this method a post req?
     # print(request.POST) # This represents information from the POST
