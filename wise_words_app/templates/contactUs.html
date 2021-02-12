@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WiseWords Display</title>
+    <title>Document</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
 
     <!-- Need this to style CSS-->
     {% load static %}
@@ -15,7 +18,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!-- Need this for BootStrap -->
 </head>
-
 <body>
     <div>
         <nav class="navbar navbar-inverse">
@@ -39,7 +41,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- navbar-right moves the things inside to the right of the bar, vice versa -->
                         <li class="">
-                            <a href="/contactUs">
+                            <a href="#">
                                 <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp; Contact Us
                             </a>
                         </li>
@@ -53,20 +55,8 @@
             </div>
         </nav>
     </div>
-
-    <div class="">
-        <div class="showPost">
-            <h1>{{oneMansWiseWords.wiseWords}}</h1>
-        </div>
-        <div class="showPostForLikes">
-            <p>Number of Likes: {{oneMansWiseWords.likes.all.count}}</p>
-            <!-- .all basically shows all of them, and then .count basically turns that value into a number for display -->
-            {% for usersWhoLikedObject in oneMansWiseWords.likes.all %}
-            <!-- usersWhoLikedObject is a var that we made and oneMansWiseWords is from the render method in the views file -->
-            <p>{{usersWhoLikedObject.firstName}} {{usersWhoLikedObject.lastName}}</p>
-            {% endfor %}
-        </div>
+    <div>
+        <img src="{% static 'style/images/Contact_Banner.jpg' %}">
     </div>
 </body>
-
 </html>

@@ -9,7 +9,8 @@ urlpatterns = [
     path('welcome', views.welcomeToWiseWords),
 
     path('registerPage', views.registerPage), # STEP 7: If if in views the index method isnt made in views file, make one 
-    path('register', views.register), # orange is basically the route we specified, and in views we need to make a method called register 
+    path('register', views.register), # orange is basically the route we specified, and in views we need to make a method called register
+    path('contactUs', views.contactUs), 
     path('homepage', views.homepage), # .something is the method we have created in views
 
     path('loginPage', views.loginPage), # rendering login page here

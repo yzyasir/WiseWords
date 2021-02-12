@@ -194,3 +194,7 @@ def showPost(request, postId):
 
     return render(request, "showpost.html", context) # Need to thrust our data forth, thats why we add context
  
+# _________________________________________________________________________________________________________________________
+
+def contactUs(request):
+    return render(request, "contactUs.html")
