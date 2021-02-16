@@ -9,6 +9,7 @@
   <!-- Need this to style CSS-->
   {% load static %}
   <link rel="stylesheet" href="{% static 'style/style.css' %}">
+  <link rel="stylesheet" href="{% static 'style/table.css' %}">
   <!-- Need this to style CSS -->
 
   <!-- Need this for BootStrap -->
@@ -56,10 +57,11 @@
     </nav>
   </div>
 
+  <div class="welcomeBox">
     <h2>Welcome {{loggedInUser.firstName}}</h2>
     <a href="/addPost">Share Some Wise Words</a>
     <!-- <p>{{allPosts}}</p>  Just checking if it works  -->
-    
+  </div>
   
   <h3>Wise Words you like</h3>
   <h3>Wise Words you havent liked</h3>

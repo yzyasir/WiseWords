@@ -1,0 +1,4 @@
+.welcomeBox {
+    display: flex;
+    justify-content: space-around;
+}
