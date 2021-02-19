@@ -9,7 +9,6 @@
   <!-- Need this to style CSS-->
   {% load static %}
   <link rel="stylesheet" href="{% static 'style/style.css' %}">
-  <link rel="stylesheet" href="{% static 'style/table.css' %}">
   <!-- Need this to style CSS -->
 
   <!-- Need this for BootStrap -->
@@ -66,24 +65,21 @@
   <!-- <h3>Wise Words you like</h3>
   <h3>Wise Words you havent liked</h3> -->
   
+  <div>
 
-  <div class="duo">
-
-    <div class="twin">
-      <table class="table table-hover">
-        <thead>
+    <div class="duo">
+      <div class="twin">
+        <table>
           <tr>
-            <th scope="col">Post Content</th>>
-            <th scope="col">Posted by</th>>
-            <th scope="col">Date Posted</th>>
-            <th scope="col">Action</th>>
+            <th>Post Content</th>>
+            <th>Posted by</th>>
+            <th>Date Posted</th>>
+            <th>Action</th>>
           </tr>
-        </thead>
-        {% for postObject in likedPosts %}
-        <!-- postObject is just a var name I made up, and likedPosts was made in the views file -->
-        <tbody>
+          {% for postObject in likedPosts %}
+          <!-- postObject is just a var name I made up, and likedPosts was made in the views file -->
           <tr>
-            <td scope="row"><a href="/wiseWords/{{postObject.id}}">{{postObject.wiseWords}}</a></td>
+            <td><a href="/wiseWords/{{postObject.id}}">{{postObject.wiseWords}}</a></td>
             <!-- wiseWords, .uploader, .firstName, .created_at: These are the terms from our model -->
             <td>{{postObject.uploader.firstName.capitalize}}</td>
             <td>{{postObject.created_at}}</td>
@@ -91,26 +87,22 @@
             <!-- Here we include id because we want to focus in on the exact post that we are liking when we like it (because of the for loop)-->
             <!-- Should go to /like/3 for example -->
           </tr>
-        </tbody>
-        {% endfor%}
-      </table>
-    </div>
+          {% endfor%}
+        </table>
+      </div>
 
-    <div class="twin">
-      <table class="table table-hover">
-        <thead class="thead-dark">
+      <div class="twin">
+        <table>
           <tr>
-            <th scope="col">Post Content</th>>
-            <th scope="col">Posted by</th>>
-            <th scope="col">Date Posted</th>>
-            <th scope="col">Action</th>>
+            <th>Post Content</th>>
+            <th>Posted by</th>>
+            <th>Date Posted</th>>
+            <th>Action</th>>
           </tr>
-        </thead>
-        {% for postObject in notLikedPosts %}
-        <!-- postObject is just a var name I made up, and notLikedPosts was made in the views file in "context", we used the exclude ORM command -->
-        <tbody>
+          {% for postObject in notLikedPosts %}
+          <!-- postObject is just a var name I made up, and notLikedPosts was made in the views file in "context", we used the exclude ORM command -->
           <tr>
-            <td scope="row"><a href="/wiseWords/{{postObject.id}}">{{postObject.wiseWords}}</a></td>
+            <td><a href="/wiseWords/{{postObject.id}}">{{postObject.wiseWords}}</a></td>
             <!-- wiseWords, .uploader, .firstName, .created_at: These are the terms from our model -->
             <td>{{postObject.uploader.firstName.capitalize}}</td>
             <td>{{postObject.created_at}}</td>
@@ -119,9 +111,10 @@
             <!-- Here we include id because we want to focus in on the exact post that we are liking when we like it (because of the for loop)-->
             <!-- Should go to /like/3 for example -->
           </tr>
-        </tbody>
-        {% endfor%}
-      </table>
+          {% endfor%}
+        </table> 
+      </div>
+
     </div>
 
   </div>

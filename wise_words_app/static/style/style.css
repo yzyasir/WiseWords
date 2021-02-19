@@ -77,6 +77,20 @@ textarea[type=text] {
     justify-content: space-around;
 }
 
+.twin {
+    
+}
+
+#addPostLink {
+    color: white
+}
+
+.welcomeBox {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
 /* ShowPost */
 .showPost {
     display: flex;
