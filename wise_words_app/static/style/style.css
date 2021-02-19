@@ -73,8 +73,8 @@ textarea[type=text] {
 }
 
 .duo {
-    display: inline-flex;
-    justify-content: space-between;
+    display: flex;
+    justify-content: space-around;
 }
 
 /* ShowPost */

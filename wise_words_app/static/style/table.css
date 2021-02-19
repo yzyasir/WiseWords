@@ -1,9 +1,10 @@
 .welcomeBox {
     display: flex;
     justify-content: space-around;
+    margin-bottom: 10px;
 }
 
-/* .addPostLink {
-    position: relative;
-    top: 30px;
-} */
+#addPostLink {
+    color: white
+}
+
