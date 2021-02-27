@@ -69,17 +69,17 @@
 
     <div class="duo">
       <div class="twin">
-        <table>
+        <table class="table table-hover">
           <tr>
-            <th>Post Content</th>>
-            <th>Posted by</th>>
-            <th>Date Posted</th>>
-            <th>Action</th>>
+            <th scope="col">Post Content</th>>
+            <th scope="col">Posted by</th>>
+            <th scope="col">Date Posted</th>>
+            <th scope="col">Action</th>>
           </tr>
           {% for postObject in likedPosts %}
           <!-- postObject is just a var name I made up, and likedPosts was made in the views file -->
           <tr>
-            <td><a href="/wiseWords/{{postObject.id}}">{{postObject.wiseWords}}</a></td>
+            <td scope="row"><a href="/wiseWords/{{postObject.id}}">{{postObject.wiseWords}}</a></td>
             <!-- wiseWords, .uploader, .firstName, .created_at: These are the terms from our model -->
             <td>{{postObject.uploader.firstName.capitalize}}</td>
             <td>{{postObject.created_at}}</td>
@@ -92,17 +92,17 @@
       </div>
 
       <div class="twin">
-        <table>
+        <table class="table table-hover">
           <tr>
-            <th>Post Content</th>>
-            <th>Posted by</th>>
-            <th>Date Posted</th>>
-            <th>Action</th>>
+            <th scope="col">Post Content</th>>
+            <th scope="col">Posted by</th>>
+            <th scope="col">Date Posted</th>>
+            <th scope="col">Action</th>>
           </tr>
           {% for postObject in notLikedPosts %}
           <!-- postObject is just a var name I made up, and notLikedPosts was made in the views file in "context", we used the exclude ORM command -->
           <tr>
-            <td><a href="/wiseWords/{{postObject.id}}">{{postObject.wiseWords}}</a></td>
+            <td scope="row"><a href="/wiseWords/{{postObject.id}}">{{postObject.wiseWords}}</a></td>
             <!-- wiseWords, .uploader, .firstName, .created_at: These are the terms from our model -->
             <td>{{postObject.uploader.firstName.capitalize}}</td>
             <td>{{postObject.created_at}}</td>
