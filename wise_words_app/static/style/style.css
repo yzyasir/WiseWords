@@ -101,3 +101,13 @@ textarea[type=text] {
     justify-content: center;
     margin-top: 40px;
 }
+
+/* Contact Us Page */
+
+#contactUsImage {
+    opacity: 0.5;
+}
+
+.contactUsHeader {
+    color:rgb(255, 255, 255);
+}

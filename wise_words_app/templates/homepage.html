@@ -6,14 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Like Posts</title>
 
-  <!-- Need this to style CSS-->
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'style/style.css' %}">
-  <!-- Need this to style CSS -->
+  <!-- BootStrap needs to be above CSS -->
 
   <!-- Need this for BootStrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <!-- Need this for BootStrap -->
+
+  <!-- Need this to style CSS-->
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'style/style.css' %}">
+  <!-- Need this to style CSS -->
 
 </head>
 
@@ -71,10 +73,10 @@
       <div class="twin">
         <table class="table table-hover">
           <tr>
-            <th scope="col">Post Content</th>>
-            <th scope="col">Posted by</th>>
-            <th scope="col">Date Posted</th>>
-            <th scope="col">Action</th>>
+            <th scope="col">Post Content</th>
+            <th scope="col">Posted by</th>
+            <th scope="col">Date Posted</th>
+            <th scope="col">Action</th>
           </tr>
           {% for postObject in likedPosts %}
           <!-- postObject is just a var name I made up, and likedPosts was made in the views file -->
@@ -94,10 +96,10 @@
       <div class="twin">
         <table class="table table-hover">
           <tr>
-            <th scope="col">Post Content</th>>
-            <th scope="col">Posted by</th>>
-            <th scope="col">Date Posted</th>>
-            <th scope="col">Action</th>>
+            <th scope="col">Post Content</th>
+            <th scope="col">Posted by</th>
+            <th scope="col">Date Posted</th>
+            <th scope="col">Action</th>
           </tr>
           {% for postObject in notLikedPosts %}
           <!-- postObject is just a var name I made up, and notLikedPosts was made in the views file in "context", we used the exclude ORM command -->

@@ -9,14 +9,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
 
+    <!-- Note: For some reason Bootstrap must be above the CSS -->
+
+    <!-- Need this for BootStrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- Need this for BootStrap -->
+
     <!-- Need this to style CSS-->
     {% load static %}
     <link rel="stylesheet" href="{% static 'style/style.css' %}">
     <!-- Need this to style CSS -->
 
-    <!-- Need this for BootStrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <!-- Need this for BootStrap -->
 </head>
 <body>
     <div>
@@ -41,13 +44,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- navbar-right moves the things inside to the right of the bar, vice versa -->
                         <li class="">
-                            <a href="#">
-                                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp; Register
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="#">
-                                <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp; Login
+                            <a href="">
+                                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&nbsp; Share Wise Words
                             </a>
                         </li>
                         <li class="">
@@ -61,7 +59,24 @@
         </nav>
     </div>
     <div>
-        <img src="{% static 'style/images/Contact_Banner.jpg' %}">
+        <h1 class="contactUsHeader">Get in Touch</h1>
+        <h3>Want to get in touch? I'd love to be hired. Hear's how you can reach me...</h3>
+    </div>
+    <div>
+        <img id="contactUsImage" src="{% static 'style/images/Contact_Banner.jpg' %}">
+    </div>
+    <div>
+        <div>
+            <!-- Add an image of a phone here, white background -->
+            <h4>Contact me though cell</h4>
+            <h4>Interested in what I have to offer your team? Just pick up the phone to chat with me today!</h4>
+            <h4>703-371-1140</h4>
+        </div>
+        <div>
+            <!-- Add an image of a email symbole, white background -->
+            <h4>Sometimes emails are more professional, dont worry...I understand. Please contact me at your earliest convenience!</h4>
+            <h4>yzyasirzafar@gmail.com</h4>
+        </div>
     </div>
 </body>
 </html>

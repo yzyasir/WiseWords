@@ -30,6 +30,12 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+
+
+# YASIR LOOK AT THIS (To remember how to make projects): 
+# 1) Look up how to make a project on vimeo cuz I forgot
+# 2) To run server you do "python manage.py runserver", to look ar server you do "localhost:8000/whatever the route you want"
+
 INSTALLED_APPS = [
     'wise_words_app',
     # STEP 1: have to add the app name here 
