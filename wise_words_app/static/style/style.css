@@ -136,3 +136,7 @@ textarea[type=text] {
     opacity: 0.5;
 }
 
+.contactsTwins {
+    display: flex;
+    justify-content: space-around;
+}
